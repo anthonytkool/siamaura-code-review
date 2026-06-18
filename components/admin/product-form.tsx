@@ -30,10 +30,16 @@ const ProductForm = ({
   type,
   product,
   productId,
+  categories,
 }: {
   type: 'Create' | 'Update';
   product?: Product;
   productId?: string;
+  categories: {
+    id: string;
+    name: string;
+    slug: string;
+  }[];
 }) => {
   const router = useRouter();
   const { toast } = useToast();
@@ -92,7 +98,6 @@ const ProductForm = ({
 
   const images = form.watch('images');
   const isFeatured = form.watch('isFeatured');
-  const banner = form.watch('banner');
 
   return (
     <Form {...form}>
@@ -163,40 +168,23 @@ const ProductForm = ({
           {/* Category */}
           <FormField
             control={form.control}
-            name='category'
-            render={({
-              field,
-            }: {
-              field: ControllerRenderProps<
-                z.infer<typeof insertProductSchema>,
-                'category'
-              >;
-            }) => (
+            name='categoryId'
+            render={({ field }) => (
               <FormItem className='w-full'>
                 <FormLabel>Category</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter category' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Brand */}
-          <FormField
-            control={form.control}
-            name='brand'
-            render={({
-              field,
-            }: {
-              field: ControllerRenderProps<
-                z.infer<typeof insertProductSchema>,
-                'brand'
-              >;
-            }) => (
-              <FormItem className='w-full'>
-                <FormLabel>Brand</FormLabel>
-                <FormControl>
-                  <Input placeholder='Enter brand' {...field} />
+                  <select
+                    className='w-full rounded-md border border-input bg-background px-3 py-2 text-sm'
+                    value={field.value}
+                    onChange={field.onChange}
+                  >
+                    <option value=''>Select category</option>
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -310,30 +298,6 @@ const ProductForm = ({
                   </FormItem>
                 )}
               />
-              {isFeatured && banner && (
-                <Image
-                  src={banner}
-                  alt='banner image'
-                  className='w-full object-cover object-center rounded-sm'
-                  width={1920}
-                  height={680}
-                />
-              )}
-
-              {isFeatured && !banner && (
-                <UploadButton
-                  endpoint='imageUploader'
-                  onClientUploadComplete={(res: { url: string }[]) => {
-                    form.setValue('banner', res[0].url);
-                  }}
-                  onUploadError={(error: Error) => {
-                    toast({
-                      variant: 'destructive',
-                      description: `ERROR! ${error.message}`,
-                    });
-                  }}
-                />
-              )}
             </CardContent>
           </Card>
         </div>
