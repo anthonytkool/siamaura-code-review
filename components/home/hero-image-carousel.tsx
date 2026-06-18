@@ -12,7 +12,6 @@ const images = [
     title: 'Yaksha Guardian Giant',
     subtitle: 'Protector of Sacred Places',
   },
-
   {
     src: '/images/grand-palace-cover.jpg',
     location: 'Bangkok, Thailand',
@@ -25,14 +24,12 @@ const images = [
     title: 'The Golden Mount',
     subtitle: 'Wat Saket',
   },
-
   {
     src: '/images/wat-arun-cover.jpg',
     location: 'Bangkok, Thailand',
     title: 'Wat Arun',
     subtitle: 'The Temple of Dawn',
   },
-
   {
     src: '/images/naga-buddha-cover.jpg',
     location: 'Bangkok, Thailand',
@@ -76,42 +73,62 @@ const images = [
     subtitle: 'Tuk-Tuks, Ancient Giants & Midnight Siam',
   },
 ];
+
 const HeroImageCarousel = () => {
   const [current, setCurrent] = useState(0);
-  const image = images[current];
+  const [next, setNext] = useState(1);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      setNext((current + 1) % images.length);
+      setTransitioning(true);
+
+      setTimeout(() => {
+        setCurrent((prev) => (prev + 1) % images.length);
+        setTransitioning(false);
+      }, 700);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [current]);
 
   return (
     <div className='w-full max-w-full rounded-2xl border border-[#B8960C]/30 bg-white/60 p-2 shadow-sm'>
       <div className='relative h-[320px] overflow-hidden rounded-xl shadow-lg md:h-[380px]'>
+        {/* Current image — fades out */}
         <Image
-          key={image.src}
-          src={image.src}
-          alt={image.title}
+          src={images[current].src}
+          alt={images[current].title}
           fill
           priority
-          className='object-cover object-center transition-opacity duration-700 animate-fadeIn'
+          className={`object-cover object-center transition-opacity duration-700 ${
+            transitioning ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+
+        {/* Next image — always preloaded underneath */}
+        <Image
+          src={images[next].src}
+          alt={images[next].title}
+          fill
+          priority
+          className='object-cover object-center'
+          style={{ zIndex: -1 }}
         />
 
         <div className='absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent' />
 
         <div className='absolute bottom-0 left-0 p-4 text-white md:p-6'>
           <p className='text-xs uppercase tracking-[0.25em] text-[#E6C35C]'>
-            {image.location}
+            {images[current].location}
           </p>
-
           <h3 className='mt-2 text-2xl font-semibold leading-tight md:text-3xl'>
-            {image.title}
+            {images[current].title}
           </h3>
-
-          <p className='mt-1 text-sm text-gray-200'>{image.subtitle}</p>
+          <p className='mt-1 text-sm text-gray-200'>
+            {images[current].subtitle}
+          </p>
         </div>
       </div>
 
