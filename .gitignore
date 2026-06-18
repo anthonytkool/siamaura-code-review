@@ -1,0 +1,41 @@
+# ── Environment & Secrets (NEVER commit these) ──
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+*.env
+.env.*
+
+# ── Dependencies ──
+node_modules/
+.pnp
+.pnp.js
+
+# ── Next.js Build Output ──
+.next/
+out/
+build/
+dist/
+
+# ── Vercel ──
+.vercel
+
+# ── OS Files ──
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── IDE / Editor ──
+.vscode/
+.idea/
+
+# ── Debug Logs ──
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Misc ──
+*.pem
+*.key
+*.cert
