@@ -97,10 +97,10 @@ export async function getAllProducts({
       sort === 'lowest'
         ? { price: 'asc' }
         : sort === 'highest'
-        ? { price: 'desc' }
-        : sort === 'rating'
-        ? { rating: 'desc' }
-        : { createdAt: 'desc' },
+          ? { price: 'desc' }
+          : sort === 'rating'
+            ? { rating: 'desc' }
+            : { createdAt: 'desc' },
     skip: (page - 1) * limit,
     take: limit,
   });
@@ -180,14 +180,13 @@ export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
 
 // Get all categories
 export async function getAllCategories() {
-  const data = await prisma.product.groupBy({
-    by: ['category'],
-    _count: true,
+  const data = await prisma.category.findMany({
+    where: { isActive: true },
+    orderBy: { name: 'asc' },
   });
 
   return data;
 }
-
 // Get featured products
 export async function getFeaturedProducts() {
   const data = await prisma.product.findMany({

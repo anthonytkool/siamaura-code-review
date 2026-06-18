@@ -24,21 +24,32 @@ model User {
   Review        Review[]
 }
 
+model Category {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  slug        String    @unique
+  image       String?
+  description String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime  @updatedAt
+
+  products    Product[]
+}
+
 model Product {
   id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String
   slug        String      @unique(map: "product_slug_idx")
-  category    String
+  categoryId  String      @db.Uuid
   images      String[]
-  brand       String
   description String
   stock       Int
   price       Decimal     @default(0) @db.Decimal(12, 2)
-  rating      Decimal     @default(0) @db.Decimal(3, 2)
-  numReviews  Int         @default(0)
   isFeatured  Boolean     @default(false)
-  banner      String?
   createdAt   DateTime    @default(now()) @db.Timestamp(6)
+
+  category    Category    @relation(fields: [categoryId], references: [id])
   OrderItem   OrderItem[]
   Review      Review[]
 }
