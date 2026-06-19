@@ -2,7 +2,8 @@
 
 import { useToast } from '@/hooks/use-toast';
 import { insertCategorySchema } from '@/lib/validators';
-import { createCategory } from '@/lib/actions/category.actions';
+import { createCategory, updateCategory } from '@/lib/actions/category.actions';
+import { Category } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { ControllerRenderProps, SubmitHandler, useForm } from 'react-hook-form';
@@ -29,33 +30,67 @@ const categoryDefaultValues = {
   isActive: true,
 };
 
-const CategoryForm = () => {
+const CategoryForm = ({
+  type,
+  category,
+  categoryId,
+}: {
+  type: 'Create' | 'Update';
+  category?: Category;
+  categoryId?: string;
+}) => {
   const router = useRouter();
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof insertCategorySchema>>({
     resolver: zodResolver(insertCategorySchema),
-    defaultValues: categoryDefaultValues,
+    defaultValues:
+      category && type === 'Update' ? category : categoryDefaultValues,
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof insertCategorySchema>> = async (
     values
   ) => {
-    const res = await createCategory(values);
+    if (type === 'Create') {
+      const res = await createCategory(values);
 
-    if (!res.success) {
+      if (!res.success) {
+        toast({
+          variant: 'destructive',
+          description: res.message,
+        });
+        return;
+      }
+
       toast({
-        variant: 'destructive',
         description: res.message,
       });
-      return;
+
+      router.push('/admin/categories');
     }
 
-    toast({
-      description: res.message,
-    });
+    if (type === 'Update') {
+      if (!categoryId) {
+        router.push('/admin/categories');
+        return;
+      }
 
-    router.push('/admin/categories');
+      const res = await updateCategory({ ...values, id: categoryId });
+
+      if (!res.success) {
+        toast({
+          variant: 'destructive',
+          description: res.message,
+        });
+        return;
+      }
+
+      toast({
+        description: res.message,
+      });
+
+      router.push('/admin/categories');
+    }
   };
 
   return (
@@ -187,7 +222,7 @@ const CategoryForm = () => {
             size='lg'
             disabled={form.formState.isSubmitting}
           >
-            Create Category
+            {type} Category
           </Button>
         </div>
       </form>
