@@ -3,11 +3,19 @@ import Stripe from 'stripe';
 import { updateOrderToPaid } from '@/lib/actions/order.actions';
 
 export async function POST(req: NextRequest) {
-  // Build the webhook event
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!webhookSecret) {
+    return NextResponse.json(
+      { message: 'STRIPE_WEBHOOK_SECRET is not configured' },
+      { status: 500 }
+    );
+  }
+
   const event = await Stripe.webhooks.constructEvent(
     await req.text(),
     req.headers.get('stripe-signature') as string,
-    process.env.STRIPE_WEBHOOK_SECRET as string
+    webhookSecret
   );
 
   // Check for successful payment

@@ -64,7 +64,7 @@ const AdminProductsPage = async (props: {
             <TableHead className='text-right'>PRICE</TableHead>
             <TableHead>CATEGORY</TableHead>
             <TableHead>STOCK</TableHead>
-            <TableHead>RATING</TableHead>
+
             <TableHead className='w-[100px]'>ACTIONS</TableHead>
           </TableRow>
         </TableHeader>
@@ -76,9 +76,8 @@ const AdminProductsPage = async (props: {
               <TableCell className='text-right'>
                 {formatCurrency(product.price)}
               </TableCell>
-              <TableCell>{product.category}</TableCell>
+              <TableCell>{product.category?.name}</TableCell>
               <TableCell>{product.stock}</TableCell>
-              <TableCell>{product.rating}</TableCell>
               <TableCell className='flex gap-1'>
                 <Button asChild variant='outline' size='sm'>
                   <Link href={`/admin/products/${product.id}`}>Edit</Link>
