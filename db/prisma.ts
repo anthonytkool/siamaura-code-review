@@ -13,11 +13,6 @@ function createPrismaClient() {
             return product.price.toString();
           },
         },
-        rating: {
-          compute(product) {
-            return product.rating.toString();
-          },
-        },
       },
       cart: {
         itemsPrice: {
