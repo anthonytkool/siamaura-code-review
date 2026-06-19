@@ -13,7 +13,7 @@ const CreateCategoryPage = async () => {
     <>
       <h2 className='h2-bold'>Create Category</h2>
       <div className='my-8'>
-        <CategoryForm />
+        <CategoryForm type='Create' />
       </div>
     </>
   );
