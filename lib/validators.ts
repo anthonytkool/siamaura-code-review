@@ -26,6 +26,15 @@ export const updateProductSchema = insertProductSchema.extend({
   id: z.string().min(1, 'Id is required'),
 });
 
+// Schema for inserting categories
+export const insertCategorySchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  slug: z.string().min(3, 'Slug must be at least 3 characters'),
+  image: z.string().optional(),
+  description: z.string().optional(),
+  isActive: z.boolean(),
+});
+
 // Schema for signing users in
 export const signInFormSchema = z.object({
   email: z.string().email('Invalid email address'),
