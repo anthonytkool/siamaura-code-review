@@ -43,3 +43,45 @@ export async function createCategory(data: {
     return { success: false, message: formatError(error) };
   }
 }
+export async function getCategoryById(categoryId: string) {
+  const data = await prisma.category.findFirst({
+    where: {
+      id: categoryId,
+    },
+  });
+
+  return data;
+}
+
+export async function updateCategory(data: {
+  id: string;
+  name: string;
+  slug: string;
+  image?: string;
+  description?: string;
+  isActive: boolean;
+}) {
+  try {
+    await prisma.category.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        name: data.name,
+        slug: data.slug,
+        image: data.image || null,
+        description: data.description || null,
+        isActive: data.isActive,
+      },
+    });
+
+    revalidatePath('/admin/categories');
+
+    return {
+      success: true,
+      message: 'Category updated successfully',
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
+}
