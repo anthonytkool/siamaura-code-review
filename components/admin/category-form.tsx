@@ -45,7 +45,13 @@ const CategoryForm = ({
   const form = useForm<z.infer<typeof insertCategorySchema>>({
     resolver: zodResolver(insertCategorySchema),
     defaultValues:
-      category && type === 'Update' ? category : categoryDefaultValues,
+      category && type === 'Update'
+        ? {
+            ...category,
+            image: category.image || '',
+            description: category.description || '',
+          }
+        : categoryDefaultValues,
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof insertCategorySchema>> = async (
