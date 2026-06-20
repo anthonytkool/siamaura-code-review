@@ -8,33 +8,33 @@ const IconBoxes = () => {
         <CardContent className='grid md:grid-cols-4 gap-4 p-4'>
           <div className='space-y-2'>
             <ShoppingBag />
-            <div className='text-sm font-bold'>Free Shipping in Thailand</div>
+            <div className='text-sm font-bold'>Thailand Shipping</div>
             <div className='text-sm text-muted-foreground'>
-              Free shipping for all orders within Thailand. International
-              shipping rates apply for overseas orders.
+              Carefully packed and shipped within Thailand. International
+              shipping can be discussed before purchase.
             </div>
           </div>
           <div className='space-y-2'>
             <BadgeCheck />
-            <div className='text-sm font-bold'>Authenticity Guarantee</div>
+            <div className='text-sm font-bold'>Carefully Selected</div>
             <div className='text-sm text-muted-foreground'>
-              Every item is carefully inspected before shipment
+              Each piece is reviewed with care before being listed or shipped.
             </div>
           </div>
           <div className='space-y-2'>
             <WalletCards />
-            <div className='text-sm font-bold'>Flexible Payment</div>
+            <div className='text-sm font-bold'>Secure Checkout</div>
             <div className='text-sm text-muted-foreground'>
-              Pay with credit card or Cash on Delivery
+              Pay securely online. For special requests, contact Siam Aura
+              before ordering.
             </div>
           </div>
           <div className='space-y-2'>
             <Headset />
-            <div className='text-sm font-bold'>Customer Support</div>
+            <div className='text-sm font-bold'>Questions Welcome</div>
             <div className='text-sm text-muted-foreground'>
-              Available Monday to Saturday
-              <br />
-              9:30 am - 5:00 pm
+              Need more details, photos, or clarification? Contact Siam Aura
+              before purchase.
             </div>
           </div>
         </CardContent>
