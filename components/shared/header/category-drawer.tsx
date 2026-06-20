@@ -77,20 +77,25 @@ const CategoryDrawer = async () => {
 
             <div className='my-3 border-t' />
 
-            {categories.map((x) => (
-              <Button
-                variant='ghost'
-                className='w-full justify-start'
-                key={x.category}
-                asChild
-              >
-                <DrawerClose asChild>
-                  <Link href={`/search?category=${x.category}`}>
-                    {x.category} ({x._count})
-                  </Link>
-                </DrawerClose>
-              </Button>
-            ))}
+            {categories.map((x) => {
+              const name = x.name;
+              const slug = x.slug;
+
+              if (!name || !slug) return null;
+
+              return (
+                <Button
+                  variant='ghost'
+                  className='w-full justify-start'
+                  key={slug}
+                  asChild
+                >
+                  <DrawerClose asChild>
+                    <Link href={`/search?category=${slug}`}>{name}</Link>
+                  </DrawerClose>
+                </Button>
+              );
+            })}
           </div>
         </DrawerHeader>
       </DrawerContent>
