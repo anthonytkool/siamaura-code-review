@@ -18,73 +18,129 @@ const ProductDetailsPage = async (props: {
   const cart = await getMyCart();
 
   return (
-    <>
-      <section>
-        <div className='grid grid-cols-1 md:grid-cols-5'>
-          <div className='col-span-2'>
-            <ProductImages images={product.images} />
-          </div>
-          <div className='col-span-2 p-5'>
-            <div className='flex flex-col gap-6'>
-              <p>
-                {product.brand} {product.category}
+    <section className='py-8'>
+      <div className='grid grid-cols-1 gap-8 md:grid-cols-5'>
+        <div className='col-span-2'>
+          <ProductImages images={product.images} />
+        </div>
+
+        <div className='col-span-2 px-1 md:px-5'>
+          <div className='flex flex-col gap-6'>
+            <div>
+              <h1 className='font-serif text-3xl leading-tight text-stone-950 md:text-4xl'>
+                {product.name}
+              </h1>
+
+              <p className='mt-3 text-xs uppercase tracking-[0.25em] text-stone-500'>
+                {product.brand} · {product.category}
               </p>
-              <h1 className='h3-bold'>{product.name}</h1>
-              <div className='flex flex-col gap-1'>
-                <ProductPrice
-                  value={Number(product.price)}
-                  className='w-24 rounded-full bg-green-100 text-green-700 px-5 py-2'
-                />
-                <p className='text-xs text-muted-foreground'>
-                  ≈ ${(Number(product.price) / 33).toFixed(0)} USD · Rate: 1 USD
-                  ≈ ฿33
-                </p>
-              </div>
             </div>
-            <div className='mt-10'>
-              <p className='font-semibold'>Description</p>
-              <p>{product.description}</p>
+
+            <div className='flex flex-col gap-2'>
+              <ProductPrice
+                value={Number(product.price)}
+                className='w-fit rounded-full border border-[#d6b25e]/40 bg-[#faf8f3] px-5 py-2 text-stone-950'
+              />
+              <p className='text-xs text-stone-500'>
+                ≈ ${(Number(product.price) / 33).toFixed(0)} USD · Rate: 1 USD ≈
+                ฿33
+              </p>
             </div>
-          </div>
-          <div>
-            <Card>
-              <CardContent className='p-4'>
-                <div className='mb-2 flex justify-between'>
-                  <div>Price</div>
-                  <div>
-                    <ProductPrice value={Number(product.price)} />
-                  </div>
-                </div>
-                <div className='mb-2 flex justify-between'>
-                  <div>Status</div>
-                  {product.stock > 0 ? (
-                    <Badge variant='outline'>In Stock</Badge>
-                  ) : (
-                    <Badge variant='destructive'>Out Of Stock</Badge>
-                  )}
-                </div>
-                {product.stock > 0 && (
-                  <div className='flex-center'>
-                    <AddToCart
-                      cart={cart}
-                      stock={product.stock}
-                      item={{
-                        productId: product.id,
-                        name: product.name,
-                        slug: product.slug,
-                        price: product.price,
-                        qty: 1,
-                        image: product.images![0],
-                      }}
-                    />
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+
+            <div className='rounded-2xl border border-stone-200 bg-[#faf8f3] p-5'>
+              <p className='mb-2 font-serif text-lg text-stone-950'>
+                The Details
+              </p>
+              <p className='whitespace-pre-line leading-7 text-stone-700'>
+                {product.description}
+              </p>
+            </div>
+
+            <div className='rounded-2xl border border-stone-200 bg-white p-5'>
+              <p className='mb-2 font-serif text-lg text-stone-950'>
+                <b>Purchase with Trust</b>
+              </p>
+              <p className='leading-7 text-stone-700'>
+                Each piece is presented with care for collectors who value Thai
+                sacred arts, cultural meaning, and clear information before
+                purchase.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    </>
+
+        <div>
+          <Card className='rounded-2xl border-stone-200 shadow-sm md:sticky md:top-28'>
+            <CardContent className='p-5'>
+              <p className='mb-4 font-serif text-lg text-stone-950'>
+                Purchase & Trust
+              </p>
+
+              <div className='mb-4 flex justify-between gap-4'>
+                <div className='text-stone-600'>Price</div>
+                <div>
+                  <ProductPrice value={Number(product.price)} />
+                </div>
+              </div>
+
+              <div className='mb-5 flex justify-between gap-4'>
+                <div className='text-stone-600'>Status</div>
+                {product.stock > 0 ? (
+                  <Badge
+                    variant='outline'
+                    className='border-[#d6b25e]/50 bg-[#faf8f3] text-stone-800'
+                  >
+                    In Stock
+                  </Badge>
+                ) : (
+                  <Badge variant='destructive'>Out Of Stock</Badge>
+                )}
+              </div>
+
+              <div className='mb-5 border-t border-stone-100 pt-5'>
+                <p className='mb-2 font-serif text-base text-stone-950'>
+                  Before Purchase
+                </p>
+                <div className='space-y-2 text-sm leading-6 text-stone-600'>
+                  <p>Carefully listed by Siam Aura.</p>
+                  <p>Questions are welcome before checkout.</p>
+                  <p>
+                    Condition and details should be reviewed before purchase.
+                  </p>
+                </div>
+              </div>
+
+              <div className='mb-5 border-t border-stone-100 pt-5'>
+                <p className='mb-2 font-serif text-base text-stone-950'>
+                  Need More Details?
+                </p>
+                <p className='text-sm leading-6 text-stone-600'>
+                  Contact Siam Aura if you would like more photos or
+                  clarification before ordering.
+                </p>
+              </div>
+
+              {product.stock > 0 && (
+                <div className='flex-center'>
+                  <AddToCart
+                    cart={cart}
+                    stock={product.stock}
+                    item={{
+                      productId: product.id,
+                      name: product.name,
+                      slug: product.slug,
+                      price: product.price,
+                      qty: 1,
+                      image: product.images![0],
+                    }}
+                  />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
   );
 };
 

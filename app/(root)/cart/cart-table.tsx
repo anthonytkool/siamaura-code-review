@@ -159,7 +159,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                 </span>
               </div>
               <Button
-                className='w-full'
+                className='w-full bg-[#b38b2d] text-white hover:bg-[#9f7a24]'
                 disabled={isPending}
                 onClick={() =>
                   startTransition(() => router.push('/shipping-address'))

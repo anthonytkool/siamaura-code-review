@@ -110,7 +110,11 @@ const AddToCart = ({
       Out Of Stock
     </Button>
   ) : (
-    <Button className='w-full' type='button' onClick={handleAddToCart}>
+    <Button
+      className='w-full bg-[#b38b2d] text-white hover:bg-[#9f7a24]'
+      type='button'
+      onClick={handleAddToCart}
+    >
       {isPending ? (
         <Loader className='w-4 h-4 animate-spin' />
       ) : (
