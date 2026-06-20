@@ -8,25 +8,38 @@ const ProductImages = ({ images }: { images: string[] }) => {
 
   return (
     <div className='space-y-4'>
-      <Image
-        src={images[current]}
-        alt='product image'
-        width={1000}
-        height={1000}
-        className='min-h-[300px] object-cover object-center'
-      />
-      <div className='flex'>
+      <div className='rounded-lg border bg-white p-4'>
+        <Image
+          src={images[current]}
+          alt='product image'
+          width={1200}
+          height={1200}
+          className='w-full max-h-[700px] object-contain mx-auto'
+          priority
+        />
+      </div>
+
+      <div className='flex gap-2 flex-wrap'>
         {images.map((image, index) => (
-          <div
+          <button
             key={image}
+            type='button'
             onClick={() => setCurrent(index)}
             className={cn(
-              'border mr-2 cursor-pointer hover:border-orange-600',
-              current === index && 'border-orange-500'
+              'border rounded-md overflow-hidden cursor-pointer hover:border-amber-600 transition',
+              current === index
+                ? 'border-amber-600 ring-2 ring-amber-200'
+                : 'border-gray-200'
             )}
           >
-            <Image src={image} alt='image' width={100} height={100} />
-          </div>
+            <Image
+              src={image}
+              alt='thumbnail'
+              width={100}
+              height={100}
+              className='w-20 h-20 object-contain bg-gray-200'
+            />
+          </button>
         ))}
       </div>
     </div>
