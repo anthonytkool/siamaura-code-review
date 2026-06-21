@@ -8,7 +8,7 @@ const IconBoxes = () => {
         <CardContent className='grid md:grid-cols-4 gap-4 p-4'>
           <div className='space-y-2'>
             <ShoppingBag />
-            <div className='text-sm font-bold'>Thailand Shipping</div>
+            <div className='text-sm font-bold'>Thailand-Based Shipping</div>
             <div className='text-sm text-muted-foreground'>
               Carefully packed and shipped within Thailand. International
               shipping can be discussed before purchase.
