@@ -12,20 +12,17 @@ const HomeTrustSplit = () => {
           <ul className='mt-5 space-y-3 text-sm text-muted-foreground'>
             <li>
               <span className='font-bold text-[#B8960C]'>✓</span> 7 years in
-              luxury hospitality, concierge, & hotel front office Manager
+              luxury hospitality, concierge, and hotel front office management
             </li>
             <li>
-              <span className='font-bold text-[#B8960C]'>✓</span> 8+ years of
-              guiding & leading expertise across Thailand, Vietnam, Laos, and
-              Cambodia
+              <span className='font-bold text-[#B8960C]'>✓</span> 8+ years
+              guiding guests across Thailand, Vietnam, Laos, and Cambodia
             </li>
             <li>
-              {' '}
               <span className='font-bold text-[#B8960C]'>✓</span> 2 cruise ship
-              Purser contracts with Carnival Cruise Ship
+              contracts with Carnival Cruise Line
             </li>
             <li>
-              {' '}
               <span className='font-bold text-[#B8960C]'>✓</span> Private pace,
               flexible planning, and cultural context
             </li>
@@ -41,22 +38,18 @@ const HomeTrustSplit = () => {
           </h2>
           <ul className='mt-5 space-y-3 text-sm text-muted-foreground'>
             <li>
-              {' '}
-              <span className='font-bold text-[#B8960C]'>✓</span> Thai amulets
-              and sacred objects with cultural context
+              <span className='font-bold text-[#B8960C]'>✓</span> Curated Thai
+              amulets and sacred objects with cultural context
             </li>
             <li>
-              {' '}
               <span className='font-bold text-[#B8960C]'>✓</span> Clear
               descriptions and transparent presentation
             </li>
             <li>
-              {' '}
               <span className='font-bold text-[#B8960C]'>✓</span> Carefully
-              inspected before shipment
+              reviewed before shipment
             </li>
             <li>
-              {' '}
               <span className='font-bold text-[#B8960C]'>✓</span> Built around
               trust, not mass-market selling
             </li>
