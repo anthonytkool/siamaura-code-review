@@ -141,7 +141,7 @@ const ProductForm = ({
               >;
             }) => (
               <FormItem className='w-full'>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Slug</FormLabel>
                 <FormControl>
                   <div className='relative'>
                     <Input placeholder='Enter slug' {...field} />
