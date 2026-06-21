@@ -9,15 +9,16 @@ const HeroSection = () => {
         {/* LEFT */}
         <div className='flex flex-col justify-center px-8 py-12 md:px-14'>
           <p className='mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-[#B8960C]'>
-            Thai Sacred Arts
+            Thai Sacred Arts • Heritage Stories • Concierge
           </p>
           <h1 className='mb-5 text-4xl font-bold tracking-wide md:text-6xl'>
             <span className='font-serif text-[#B8960C]'>S</span>iam{' '}
             <span className='font-serif text-[#B8960C]'>A</span>ura
           </h1>
           <p className='mb-6 max-w-md text-base leading-7 text-gray-600'>
-            Curated Thai amulets, sacred arts, and meaningful objects selected
-            with care, transparency, and respect for Thai heritage.
+            A curated gateway to Thai sacred arts, cultural stories, meaningful
+            objects, and private concierge experiences — selected with care,
+            transparency, and respect for Thai heritage.
           </p>
           <div className='flex flex-col gap-3 sm:flex-row'>
             <Button asChild className='bg-[#B8960C] hover:bg-[#9f8008]'>
