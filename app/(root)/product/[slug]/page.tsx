@@ -49,7 +49,7 @@ const ProductDetailsPage = async (props: {
 
             <div className='rounded-2xl border border-stone-200 bg-[#faf8f3] p-5'>
               <p className='mb-2 font-serif text-lg text-stone-950'>
-                The Details
+                About This Piece
               </p>
               <p className='whitespace-pre-line leading-7 text-stone-700'>
                 {product.description}
@@ -139,6 +139,15 @@ const ProductDetailsPage = async (props: {
             </CardContent>
           </Card>
         </div>
+      </div>
+
+      <div className='mt-10 rounded-2xl border border-stone-200 bg-white p-6 md:p-8'>
+        <p className='mb-3 font-serif text-2xl text-stone-950'>
+          Story, Condition & Notes
+        </p>
+        <p className='whitespace-pre-line leading-7 text-stone-700'>
+          {product.description}
+        </p>
       </div>
     </section>
   );
