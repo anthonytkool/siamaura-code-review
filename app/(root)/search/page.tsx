@@ -56,6 +56,35 @@ const SearchPage = async (props: {
         </p>
       </div>
 
+      <div className='mb-8 rounded-2xl border border-[#d6b25e]/40 bg-[#faf8f3] p-5'>
+        <p className='mb-3 font-serif text-lg text-stone-950'>
+          Collection Notice
+        </p>
+
+        <div className='space-y-2 text-sm leading-6 text-stone-700'>
+          <p>
+            <b>EN:</b> Curated Thai sacred objects with cultural context, clear
+            presentation, and respectful sourcing.
+          </p>
+
+          <p>
+            <b>中文:</b> 精选泰国圣物，附文化背景、清晰说明与尊重来源。
+          </p>
+
+          <p>
+            <b>TH:</b> ของสะสมสายศรัทธา คัดโดย Siam Aura พร้อมที่มา
+            บริบททางวัฒนธรรม และการนำเสนออย่างเหมาะสม
+          </p>
+
+          <Link
+            href='/collection-policy'
+            className='inline-block text-sm font-medium text-[#9a7a10] underline underline-offset-4 hover:text-[#6f5508]'
+          >
+            Read Full Collection Policy
+          </Link>
+        </div>
+      </div>
+
       <div className='mb-8 flex flex-wrap gap-3'>
         <Button
           asChild
