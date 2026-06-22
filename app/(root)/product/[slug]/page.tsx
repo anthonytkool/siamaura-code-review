@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getProductBySlug } from '@/lib/actions/product.actions';
@@ -65,6 +66,37 @@ const ProductDetailsPage = async (props: {
                 sacred arts, cultural meaning, and clear information before
                 purchase.
               </p>
+            </div>
+
+            <div className='rounded-2xl border border-[#d6b25e]/40 bg-[#faf8f3] p-5'>
+              <p className='mb-3 font-serif text-lg text-stone-950'>
+                Collection Policy Notice
+              </p>
+
+              <div className='space-y-3 text-sm leading-6 text-stone-700'>
+                <p>
+                  <b>EN:</b> Please review all photos, details, and verification
+                  notes before purchase. Full Collection Policy applies.
+                </p>
+
+                <p>
+                  <b>中文:</b>{' '}
+                  购买前请查看所有照片、说明与资料来源。本商品适用完整收藏政策。
+                </p>
+
+                <p>
+                  <b>TH:</b> กรุณาตรวจสอบรูป รายละเอียด
+                  และข้อมูลที่มาก่อนสั่งซื้อ โดยอยู่ภายใต้นโยบาย Collection
+                  Policy
+                </p>
+
+                <Link
+                  href='/collection-policy'
+                  className='inline-block text-sm font-medium text-[#9a7a10] underline underline-offset-4 hover:text-[#6f5508]'
+                >
+                  Read Full Collection Policy
+                </Link>
+              </div>
             </div>
           </div>
         </div>
