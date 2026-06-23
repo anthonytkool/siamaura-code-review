@@ -71,6 +71,13 @@ const Footer = () => {
           </Link>
 
           <Link
+            href='/collection-policy'
+            className='hover:text-[#B8960C] transition-colors'
+          >
+            Collection Policy
+          </Link>
+
+          <Link
             href='/contact'
             className='hover:text-[#B8960C] transition-colors'
           >
