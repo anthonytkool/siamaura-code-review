@@ -10,9 +10,7 @@ export async function requireAdmin() {
     where: { clerkId: userId },
   });
 
-  if (user?.role !== 'admin') {
-    redirect('/unauthorized');
-  }
-
+  if (!user) redirect('/sign-in');
+  if (user.role !== 'admin') redirect('/unauthorized');
   return user;
 }
