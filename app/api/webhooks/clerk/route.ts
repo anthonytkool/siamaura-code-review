@@ -73,7 +73,11 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.deleted') {
     const { id } = evt.data;
-    await prisma.user.delete({ where: { clerkId: id as string } });
+    try {
+      await prisma.user.delete({ where: { clerkId: id as string } });
+    } catch {
+      // user might not exist in DB, ignore
+    }
   }
 
   return new NextResponse('Webhook received', { status: 200 });
